@@ -27,7 +27,7 @@ export class CreatePostsService {
     activeUser: ActiveUserData,
   ) {
     const { tags } = createPostDto;
-    let existingTags: Tag[] = [];
+    let existingTags: Tag[];
     let author: User;
     try {
       author = await this.usersService.findOneById({ id: activeUser.sub });
@@ -47,13 +47,14 @@ export class CreatePostsService {
     if (existingTags.length !== tags?.length) {
       throw new BadRequestException('One or more tags id does not exist');
     }
-    let post = this.postsRepository.create({
+    const post = this.postsRepository.create({
       ...createPostDto,
       author: author,
       tags: existingTags,
     });
+    let newPost: Post;
     try {
-      post = await this.postsRepository.save(post);
+      newPost = await this.postsRepository.save(post);
     } catch {
       throw new RequestTimeoutException(
         'Unable to process your request at the moment. Please try later',
@@ -62,6 +63,6 @@ export class CreatePostsService {
         },
       );
     }
-    return post;
+    return newPost;
   }
 }

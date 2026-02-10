@@ -15,7 +15,7 @@ export class FindOneUserByEmailService {
   ) {}
 
   public async findByEmail(email: string) {
-    let user: User | null = null;
+    let user: User | null;
     try {
       user = await this.userRepository.findOne({ where: { email } });
     } catch (error) {
