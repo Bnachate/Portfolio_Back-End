@@ -21,7 +21,7 @@ export class User {
     length: 96,
     nullable: true,
   })
-  lastName: string;
+  lastName?: string;
 
   @Column({
     type: 'smallint',
@@ -46,6 +46,39 @@ export class User {
   })
   @Exclude()
   password: string;
+
+  @Column({
+    type: 'varchar',
+    length: 150,
+    nullable: false,
+  })
+  job: string;
+
+  @Column({
+    type: 'varchar',
+    length: 96,
+    nullable: false,
+  })
+  title: string;
+  @Column({
+    type: 'text',
+    nullable: false,
+  })
+  description: string;
+
+  @Column({
+    type: 'varchar',
+    length: 1024,
+    nullable: false,
+  })
+  githubUrl: string;
+
+  @Column({
+    type: 'varchar',
+    length: 1024,
+    nullable: false,
+  })
+  linkedinUrl: string;
 
   @OneToMany(() => Project, (project) => project.owner)
   projects?: Project;
