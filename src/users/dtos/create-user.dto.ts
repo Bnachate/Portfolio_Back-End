@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsString,
   IsEmail,
@@ -7,6 +8,7 @@ import {
   MaxLength,
   Matches,
   IsIn,
+  IsUrl,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -41,4 +43,49 @@ export class CreateUserDto {
       'Minimum eight character, at least one letter, one number, one special character',
   })
   password: string;
+
+  @ApiProperty({
+    description: 'This is the job title',
+    example: 'Developer Full-Stack',
+  })
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(150)
+  job: string;
+
+  @ApiProperty({
+    description: 'This is the description below job title',
+    example: 'The hero title part',
+  })
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @ApiProperty({
+    description: 'This is the description of hero part',
+    example: 'The hero content',
+  })
+  @IsString()
+  @IsNotEmpty()
+  description: string;
+
+  @ApiProperty({
+    description: 'the github link',
+    example: 'https://github.com/[username]/',
+  })
+  @IsNotEmpty()
+  @MinLength(4)
+  @MaxLength(1024)
+  @IsUrl()
+  githubUrl: string;
+
+  @ApiProperty({
+    description: 'the linked In link',
+    example: 'https://www.linkedin.com/in/[username]/',
+  })
+  @IsNotEmpty()
+  @MinLength(4)
+  @MaxLength(1024)
+  @IsUrl()
+  linkedinUrl: string;
 }

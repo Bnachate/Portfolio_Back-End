@@ -6,7 +6,12 @@ Content-Type: application/json
   "lastName": "Nachate",
   "admin": true,
   "email": "nachate.brahim@gmail.com",
-  "password": "p1a#ssword"
+  "password": "p1a#ssword",
+  "job": "Développeur Fullstack",
+  "title": "Passionné par l'architecture logicielle",
+  "description": "Développeur avec 5 ans d'expérience sur NestJS et React.",
+  "githubUrl": "https://github.com/jeandupont",
+  "linkedinUrl": "https://linkedin.com/in/jeandupont"
 }
 
 POST http://localhost:3500/users/create-many
