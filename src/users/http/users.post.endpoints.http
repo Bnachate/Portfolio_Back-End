@@ -1,0 +1,48 @@
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "firstName": "Ryo",
+  "lastName": "Saeba",
+  "email": "rsaeba2@gmail.com",
+  "password": "p1a#ssword"
+}
+
+POST http://localhost:3000/users/create-many
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIzLCJlbWFpbCI6Im51enVtYWtpQGdtYWlsLmNvbSIsImlhdCI6MTc3MDIzMTgzNCwiZXhwIjoxNzcwMjM1NDM0LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.8Ris7bvYFe5P_NZUlxMa6RgyHSPsVDgef-lTrEby484
+
+{
+  "users": [
+    {
+      "firstName": "Lucas",
+      "lastName": "Morel",
+      "email": "l.morel@example.com",
+      "password": "p1a#ssword"
+    },
+    {
+      "firstName": "Sarah",
+      "lastName": "Koné",
+      "email": "s.kone@test.io",
+      "password": "p1a#ssword"
+    },
+    {
+      "firstName": "Julien",
+      "lastName": "Bernard",
+      "email": "jbernard@hub.fr",
+      "password": "p1a#ssword"
+    },
+    {
+      "firstName": "Sophie",
+      "lastName": "Vidal",
+      "email": "svidal@agency.com",
+      "password": "p1a#ssword"
+    },
+    {
+      "firstName": "Thomas",
+      "lastName": "Dubois",
+      "email": "t.dubois@provider.net",
+      "password": "p1a#ssword"
+    }
+  ]
+}

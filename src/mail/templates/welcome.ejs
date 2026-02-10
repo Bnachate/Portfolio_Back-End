@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            padding: 50px 40px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .content {
+            padding: 40px;
+            line-height: 1.7;
+            color: #1e293b;
+        }
+        .button-container {
+            text-align: center;
+            padding: 30px 0;
+        }
+        .button {
+            background-color: #4f46e5;
+            color: #ffffff !important;
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .footer {
+            background-color: #f8fafc;
+            padding: 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+        .social-links {
+            margin-bottom: 15px;
+        }
+        .social-links a {
+            color: #4f46e5;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 style="margin:0; font-size: 32px; letter-spacing: -1px;">Welcome to the family! 🚀</h1>
+        </div>
+
+        <div class="content">
+            <p style="font-size: 18px; color: #0f172a;"><strong>Hi <%= name %>,</strong></p>
+            <p>We're absolutely thrilled to have you on board! You’ve just taken the first step toward streamlining your workflow with <strong>Portfolio Website</strong>.</p>
+            
+            <p>Your account is officially set up. To get started and explore what we've built for you, simply click the button below:</p>
+            
+            <div class="button-container">
+                <a href="<%= actionUrl %>" class="button">Get Started Now</a>
+            </div>
+
+            <p><strong>Need a hand?</strong> If you have any questions or just want to say hi, feel free to hit reply. Our support team is always happy to help.</p>
+            
+            <p>Cheers,<br>The Team</p>
+        </div>
+
+        <div class="footer">
+            <div class="social-links">
+                <a href="#">Twitter</a> • <a href="#">LinkedIn</a> • <a href="#">Instagram</a>
+            </div>
+            <p>© <%= new Date().getFullYear() %>. All rights reserved.</p>
+            <p>You received this email because you signed up for our service.</p>
+            <p>123 Tech Avenue, San Francisco, CA 94107</p>
+            <p><a href="#" style="color: #94a3b8; text-decoration: underline;">Unsubscribe</a></p>
+        </div>
+    </div>
+</body>
+</html>

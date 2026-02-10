@@ -1,0 +1,10 @@
+POST http://localhost:3000/tags
+Content-Type:application/json
+
+{
+  "name": "Javascript",
+  "slug": "my-urlthing",
+  "description": "this is a description",
+  "schema": "{\"options\": true, \"enable\": true}",
+  "featuredImageUrl": "https://www.udemy.com/course/nestjs-masterclass-complete-course/learn/lecture/44530451#announcements"
+}
