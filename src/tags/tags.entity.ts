@@ -1,4 +1,4 @@
-import { Post } from 'src/posts/posts.entity';
+import { Project } from 'src/projects/projects.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -49,10 +49,10 @@ export class Tag {
   })
   featuredImageUrl?: string;
 
-  @ManyToMany(() => Post, (post) => post.tags, {
+  @ManyToMany(() => Project, (project) => project.tags, {
     onDelete: 'CASCADE',
   })
-  posts: Post[];
+  projects: Project[];
 
   @CreateDateColumn()
   createDate: Date;

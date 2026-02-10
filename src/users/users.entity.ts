@@ -1,5 +1,5 @@
 import { Exclude } from 'class-transformer';
-import { Post } from 'src/posts/posts.entity';
+import { Project } from 'src/projects/projects.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -22,6 +22,14 @@ export class User {
   lastName: string;
 
   @Column({
+    type: 'smallint',
+    width: 1,
+    nullable: false,
+    default: 0,
+  })
+  admin: 0 | 1;
+
+  @Column({
     type: 'varchar',
     length: 96,
     nullable: false,
@@ -37,6 +45,6 @@ export class User {
   @Exclude()
   password: string;
 
-  @OneToMany(() => Post, (post) => post.author)
-  posts?: Post;
+  @OneToMany(() => Project, (project) => project.owner)
+  projects?: Project;
 }

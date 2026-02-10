@@ -1,0 +1,12 @@
+POST http://localhost:3500/projects
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcwNzUwODgzLCJleHAiOjE3NzA3NTQ0ODMsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.E8dK325cQf-GyujUajIJZvZe0lFJzwNimAfHiXEqr0Y
+
+{
+    "title": "Quantum Computing for Web Developers",
+    "description": "Is it time to learn Q# or should we wait for better JS bridges?",
+    "projectImageUrl": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb",
+    "githubUrl": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb",
+    "position": 1,
+    "tags": []
+  }

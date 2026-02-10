@@ -1,0 +1,10 @@
+PATCH http://localhost:3500/projects
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcwNzUwODgzLCJleHAiOjE3NzA3NTQ0ODMsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.E8dK325cQf-GyujUajIJZvZe0lFJzwNimAfHiXEqr0Y
+
+
+{
+    "id": 1,
+    "title": "What's new with NestJS With Vue 3",
+    "tags": []
+}

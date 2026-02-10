@@ -4,33 +4,33 @@ import {
   Injectable,
   RequestTimeoutException,
 } from '@nestjs/common';
-import { CreatePostDto } from '../dtos/create-post.dto';
+import { CreateProjectDto } from '../dtos/create-project.dto';
 import { User } from 'src/users/users.entity';
 import type { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 import { Tag } from 'src/tags/tags.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Post } from '../posts.entity';
+import { Project } from '../projects.entity';
 import { Repository } from 'typeorm';
 import { UsersService } from 'src/users/providers/users.service';
 import { TagsService } from 'src/tags/providers/tags.service';
 
 @Injectable()
-export class CreatePostsService {
+export class CreateProjectsService {
   constructor(
     private readonly usersService: UsersService,
-    @InjectRepository(Post)
-    private postsRepository: Repository<Post>,
+    @InjectRepository(Project)
+    private projectsRepository: Repository<Project>,
     private readonly tagsService: TagsService,
   ) {}
-  public async createPost(
-    @Body() createPostDto: CreatePostDto,
+  public async createProject(
+    @Body() createProjectDto: CreateProjectDto,
     activeUser: ActiveUserData,
   ) {
-    const { tags } = createPostDto;
+    const { tags } = createProjectDto;
     let existingTags: Tag[];
-    let author: User;
+    let owner: User;
     try {
-      author = await this.usersService.findOneById({ id: activeUser.sub });
+      owner = await this.usersService.findOneById({ id: activeUser.sub });
     } catch {
       throw new RequestTimeoutException(
         'Unable to process your request at the moment. Please try later',
@@ -47,14 +47,14 @@ export class CreatePostsService {
     if (existingTags.length !== tags?.length) {
       throw new BadRequestException('One or more tags id does not exist');
     }
-    const post = this.postsRepository.create({
-      ...createPostDto,
-      author: author,
+    const project = this.projectsRepository.create({
+      ...createProjectDto,
+      owner: owner,
       tags: existingTags,
     });
-    let newPost: Post;
+    let newProject: Project;
     try {
-      newPost = await this.postsRepository.save(post);
+      newProject = await this.projectsRepository.save(project);
     } catch {
       throw new RequestTimeoutException(
         'Unable to process your request at the moment. Please try later',
@@ -63,6 +63,6 @@ export class CreatePostsService {
         },
       );
     }
-    return newPost;
+    return newProject;
   }
 }
