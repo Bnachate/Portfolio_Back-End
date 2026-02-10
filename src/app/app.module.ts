@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from '../users/users.module';
 import { ProjectsModule } from '../projects/projects.module';
+import { ExperiencesModule } from '../experiences/experiences.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -24,6 +25,7 @@ const ENV = process.env.NODE_ENV;
     JwtModule.registerAsync(jwtConfig.asProvider()),
     UsersModule,
     ProjectsModule,
+    ExperiencesModule,
     TagsModule,
     AuthModule,
     MailModule,

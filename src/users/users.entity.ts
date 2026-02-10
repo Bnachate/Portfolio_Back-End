@@ -1,5 +1,6 @@
 import { Exclude } from 'class-transformer';
 import { Project } from 'src/projects/projects.entity';
+import { Experience } from 'src/experiences/experiences.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -47,4 +48,7 @@ export class User {
 
   @OneToMany(() => Project, (project) => project.owner)
   projects?: Project;
+
+  @OneToMany(() => Experience, (experience) => experience.owner)
+  experiences?: Experience;
 }
