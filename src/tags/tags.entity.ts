@@ -1,4 +1,5 @@
 import { Project } from 'src/projects/projects.entity';
+import { Experience } from 'src/experiences/experiences.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -53,6 +54,11 @@ export class Tag {
     onDelete: 'CASCADE',
   })
   projects: Project[];
+
+  @ManyToMany(() => Experience, (experience) => experience.tags, {
+    onDelete: 'CASCADE',
+  })
+  experiences: Experience[];
 
   @CreateDateColumn()
   createDate: Date;
