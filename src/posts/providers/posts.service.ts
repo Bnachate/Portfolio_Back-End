@@ -61,7 +61,7 @@ export class PostsService {
   }
 
   public async findOne(getPostsParamDto: GetPostsParamDto) {
-    let post: Post | null = null;
+    let post: Post | null;
     try {
       post = await this.postsRepository.findOne({
         where: { id: getPostsParamDto.id },

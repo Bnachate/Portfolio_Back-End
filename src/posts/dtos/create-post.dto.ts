@@ -1,6 +1,5 @@
 import { postType } from '../enums/postType.enum';
 import { postStatus } from '../enums/postStatus.enum';
-import { Type } from 'class-transformer';
 import {
   IsArray,
   IsDate,
@@ -14,10 +13,8 @@ import {
   Matches,
   MaxLength,
   MinLength,
-  ValidateNested,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { CreatePostMetaOptionsDto } from 'src/meta-options/dtos/create-posts-meta-options.dto';
 
 export class CreatePostDto {
   @ApiProperty({
@@ -104,23 +101,4 @@ export class CreatePostDto {
   @IsArray()
   @IsInt({ each: true })
   tags?: number[];
-
-  @ApiPropertyOptional({
-    type: 'object',
-    required: false,
-    items: {
-      type: 'object',
-      properties: {
-        metavalue: {
-          type: 'json',
-          description: 'The metaValue is a JSON string',
-          example: '{"sidebarEnabled": true,}',
-        },
-      },
-    },
-  })
-  @IsOptional()
-  @ValidateNested({ each: true })
-  @Type(() => CreatePostMetaOptionsDto)
-  metaOptions?: CreatePostMetaOptionsDto;
 }
