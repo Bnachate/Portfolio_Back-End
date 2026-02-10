@@ -1,0 +1,44 @@
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+
+export class CreateContactDto {
+  @ApiProperty({
+    example: 'This is the contact name',
+    description: 'This is the contact name',
+  })
+  @IsString()
+  @MinLength(4)
+  @MaxLength(512)
+  @IsNotEmpty()
+  name: string;
+
+  @IsString()
+  @IsEmail()
+  @MaxLength(96)
+  @IsNotEmpty()
+  email: string;
+
+  @ApiPropertyOptional({
+    description: 'the subject of the message',
+    example: 'this is an example of message',
+  })
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(10)
+  @MaxLength(1024)
+  subject: string;
+
+  @ApiPropertyOptional({
+    description: 'This is the message deliver by the contact',
+    example: 'The contact message',
+  })
+  @IsString()
+  @IsNotEmpty()
+  message: string;
+}

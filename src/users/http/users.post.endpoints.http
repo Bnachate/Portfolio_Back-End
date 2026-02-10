@@ -1,14 +1,20 @@
-POST http://localhost:3000/users
+POST http://localhost:3500/users
 Content-Type: application/json
 
 {
-  "firstName": "Ryo",
-  "lastName": "Saeba",
-  "email": "rsaeba2@gmail.com",
-  "password": "p1a#ssword"
+  "firstName": "Brahim",
+  "lastName": "Nachate",
+  "admin": true,
+  "email": "nachate.brahim@gmail.com",
+  "password": "p1a#ssword",
+  "job": "Développeur Fullstack",
+  "title": "Passionné par l'architecture logicielle",
+  "description": "Développeur avec 5 ans d'expérience sur NestJS et React.",
+  "githubUrl": "https://github.com/jeandupont",
+  "linkedinUrl": "https://linkedin.com/in/jeandupont"
 }
 
-POST http://localhost:3000/users/create-many
+POST http://localhost:3500/users/create-many
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIzLCJlbWFpbCI6Im51enVtYWtpQGdtYWlsLmNvbSIsImlhdCI6MTc3MDIzMTgzNCwiZXhwIjoxNzcwMjM1NDM0LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.8Ris7bvYFe5P_NZUlxMa6RgyHSPsVDgef-lTrEby484
 

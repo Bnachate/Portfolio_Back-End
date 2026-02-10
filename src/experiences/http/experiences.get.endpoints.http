@@ -1,0 +1,5 @@
+GET http://localhost:3000/projects/
+?startDate=2023-01-01
+&endDate=2023-12-31
+&limit=6
+&page=1

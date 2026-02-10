@@ -5,10 +5,7 @@ import {
   Patch,
   Delete,
   Param,
-  Query,
   Body,
-  ParseIntPipe,
-  DefaultValuePipe,
   UseInterceptors,
   ClassSerializerInterceptor,
 } from '@nestjs/common';
@@ -70,20 +67,11 @@ export class UsersController {
   public getUser(
     // @Param() getUserParamDto: GetUsersParamDto,
     @Param() param: GetUsersParamDto,
-    @Query('limit', new DefaultValuePipe(10), ParseIntPipe)
-    limit: number | undefined,
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe)
-    page: number | undefined,
   ) {
-    //   public getUser(@Param('id') id: any, @Query('limit') limit: any) {
-    console.log('limit', limit);
-    console.log('page', page);
-    console.log('users controller');
     return this.usersService.findOneById(param);
   }
 
   @Post()
-  // @SetMetadata('authType', 'none')
   @Auth(AuthType.None)
   @UseInterceptors(ClassSerializerInterceptor)
   public createUsers(@Body() createUserDto: CreateUserDto) {
