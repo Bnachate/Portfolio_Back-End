@@ -30,8 +30,8 @@ export class UsersService {
   ) {}
 
   public async findAll() {
-    let allUsers: CreateUserDto[] | undefined = undefined;
-    allUsers = await this.usersRepository.find();
+    const allUsers: CreateUserDto[] | undefined =
+      await this.usersRepository.find();
     if (!allUsers) {
       throw new HttpException(
         {
@@ -51,9 +51,7 @@ export class UsersService {
   }
 
   public async findOneById(getUsersParamDto: GetUsersParamDto) {
-    let user: User | null = null;
-    // console.log('getUserParamDto', getUsersParamDto);
-    // console.log('users', users);
+    let user: User | null;
     try {
       user = await this.usersRepository.findOne({
         where: { id: getUsersParamDto.id },

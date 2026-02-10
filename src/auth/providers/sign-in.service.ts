@@ -24,7 +24,7 @@ export class SignInService {
   ) {}
 
   public async signIn(signInDto: SignInDto) {
-    let isEqual: boolean = false;
+    let isEqual: boolean;
     const user = await this.usersService.findOneByEmail(signInDto.email);
     try {
       isEqual = await this.hashingService.comparePassword(
