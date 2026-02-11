@@ -67,10 +67,7 @@ export class ProjectsController {
     required: true,
   })
   @Delete('/:id')
-  public deleteUser(
-    // @Param() getUserParamDto: GetUsersParamDto,
-    @Param() param: GetProjectsParamDto,
-  ) {
+  public deleteUser(@Param() param: GetProjectsParamDto) {
     return this.projectsService.deleteProject(param);
   }
 }

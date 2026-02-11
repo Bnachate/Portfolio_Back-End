@@ -53,10 +53,7 @@ export class ContactsController {
     required: true,
   })
   @Delete('/:id')
-  public deleteUser(
-    // @Param() getUserParamDto: GetUsersParamDto,
-    @Param() param: GetContactsParamDto,
-  ) {
+  public deleteUser(@Param() param: GetContactsParamDto) {
     return this.contactsService.deleteContact(param);
   }
 }

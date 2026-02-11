@@ -3,7 +3,6 @@ export interface Paginated<T> {
   meta: {
     itemsPerPage: number;
     totalItems: number;
-    // itemCount: number;
     currentPage: number;
     totalPages: number;
   };

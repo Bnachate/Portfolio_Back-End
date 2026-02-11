@@ -70,10 +70,7 @@ export class ExperiencesController {
     required: true,
   })
   @Delete('/:id')
-  public deleteUser(
-    // @Param() getUserParamDto: GetUsersParamDto,
-    @Param() param: GetExperiencesParamDto,
-  ) {
+  public deleteUser(@Param() param: GetExperiencesParamDto) {
     return this.experiencesService.deleteExperience(param);
   }
 }

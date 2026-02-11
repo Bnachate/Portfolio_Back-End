@@ -15,7 +15,6 @@ import { Reflector } from '@nestjs/core';
 interface JwtPayload {
   sub: number;
   email: string;
-  // add other fields you expect here
 }
 
 @Injectable()

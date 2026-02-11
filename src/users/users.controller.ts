@@ -34,7 +34,6 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  //   @Get('/:id?/{:optional}')
   @ApiOperation({
     summary: 'Fetches a user registered on the application',
   })
@@ -64,10 +63,7 @@ export class UsersController {
     example: 1,
   })
   @Get('/:id')
-  public getUser(
-    // @Param() getUserParamDto: GetUsersParamDto,
-    @Param() param: GetUsersParamDto,
-  ) {
+  public getUser(@Param() param: GetUsersParamDto) {
     return this.usersService.findOneById(param);
   }
 
@@ -102,10 +98,7 @@ export class UsersController {
     required: true,
   })
   @Delete('/:id')
-  public deleteUser(
-    // @Param() getUserParamDto: GetUsersParamDto,
-    @Param() param: GetUsersParamDto,
-  ) {
+  public deleteUser(@Param() param: GetUsersParamDto) {
     return this.usersService.deleteUser(param);
   }
 }
