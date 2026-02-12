@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>tutorial_app documentation</title>
+        <title>porfolio_nestjs documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -60,20 +60,27 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">tutorial_app documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">porfolio_nestjs documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -82,12 +89,16 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
                <div class="content miscellaneous-variables">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -119,10 +130,34 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#posts" title="src/posts/providers/posts.service.ts" ><b>posts</b>&nbsp;&nbsp;&nbsp;(src/.../posts.service.ts)</a>
+                            <a href="#ActiveUser" title="src/auth/decorator/active-user.decorator.ts" ><b>ActiveUser</b>&nbsp;&nbsp;&nbsp;(src/.../active-user.decorator.ts)</a>
                         </li>
                         <li>
-                            <a href="#users" title="src/users/providers/users.service.ts" ><b>users</b>&nbsp;&nbsp;&nbsp;(src/.../users.service.ts)</a>
+                            <a href="#Auth" title="src/auth/decorator/auth.decorator.ts" ><b>Auth</b>&nbsp;&nbsp;&nbsp;(src/.../auth.decorator.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AUTH_TYPE_KEY" title="src/auth/constants/auth.constants.ts" ><b>AUTH_TYPE_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../auth.constants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AUTH_TYPE_KEY" title="src/auth/decorator/auth.decorator.ts" ><b>AUTH_TYPE_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../auth.decorator.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#completeUser" title="test/users/users.post.e2e-spec.sample-data.ts" ><b>completeUser</b>&nbsp;&nbsp;&nbsp;(test/.../users.post.e2e-spec.sample-data.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ENV" title="src/app/app.module.ts" ><b>ENV</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#missingEmail" title="test/users/users.post.e2e-spec.sample-data.ts" ><b>missingEmail</b>&nbsp;&nbsp;&nbsp;(test/.../users.post.e2e-spec.sample-data.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#missingFirstName" title="test/users/users.post.e2e-spec.sample-data.ts" ><b>missingFirstName</b>&nbsp;&nbsp;&nbsp;(test/.../users.post.e2e-spec.sample-data.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#missingPassword" title="test/users/users.post.e2e-spec.sample-data.ts" ><b>missingPassword</b>&nbsp;&nbsp;&nbsp;(test/.../users.post.e2e-spec.sample-data.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#REQUEST_USER_KEY" title="src/auth/constants/auth.constants.ts" ><b>REQUEST_USER_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../auth.constants.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -131,46 +166,34 @@
     </table>
 </section>
 
-    <h3>src/posts/providers/posts.service.ts</h3>
+    <h3>src/auth/decorator/active-user.decorator.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="posts"></a>
+                    <a name="ActiveUser"></a>
                     <span class="name">
-                        <span ><b>posts</b></span>
-                        <a href="#posts"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>ActiveUser</b></span>
+                        <a href="#ActiveUser"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/CreatePostDto.html" target="_self" >CreatePostDto[]</a></code>
+                        <i>Type : </i>    <code>unknown</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-  {
-    title: &quot;What&#x27;s new with NetJS&quot;,
-    postType: &#x27;post&#x27;,
-    slug: &#x27;new-with-nestjs&#x27;,
-    status: &#x27;draft&#x27;,
-    content: &#x27;test content&#x27;,
-    schema: &quot;{\r\n &#x27;@context&#x27;: &#x27;https:schema.org&#x27;,\r\n &#x27;@type&#x27;: &#x27;Person&#x27;\r\n }&quot;,
-    featuredImageUrl: &#x27;http://localhost.com/images/image1.jpg&#x27;,
-    publishOn: new Date(&#x27;2024-03-16T07:46:32+0000&#x27;),
-    tags: [&#x27;nestjs&#x27;, &#x27;typescript&#x27;],
-    metaOptions: [
-      {
-        key: &#x27;testKey&#x27;,
-        value: 20,
-      },
-    ],
+                        <i>Default value : </i><code>createParamDecorator(
+  (field: keyof ActiveUserData | undefined, ctx: ExecutionContext) &#x3D;&gt; {
+    const request &#x3D; ctx.switchToHttp().getRequest&lt;Request&gt;();
+    const activeUser &#x3D; request[REQUEST_USER_KEY] as ActiveUserData;
+    return field ? activeUser?.[field] : activeUser;
   },
-]</code>
+)</code>
                     </td>
                 </tr>
 
@@ -178,39 +201,263 @@
         </tbody>
     </table>
 </section>
-    <h3>src/users/providers/users.service.ts</h3>
+    <h3>src/auth/decorator/auth.decorator.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="users"></a>
+                    <a name="Auth"></a>
                     <span class="name">
-                        <span ><b>users</b></span>
-                        <a href="#users"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>Auth</b></span>
+                        <a href="#Auth"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>[]</code>
+                        <i>Type : </i>    <code>unknown</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-  {
-    id: 2365,
-    firstName: &#x27;Fatiha&#x27;,
-    email: &#x27;mafemme@gmail.com&#x27;,
-  },
-  {
-    id: 2366,
-    firstName: &#x27;Brahim&#x27;,
-    email: &#x27;moi@gmail.com&#x27;,
-  },
-]</code>
+                        <i>Default value : </i><code>(...authTypes: AuthType[]) &#x3D;&gt;
+  SetMetadata(AUTH_TYPE_KEY, authTypes)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUTH_TYPE_KEY"></a>
+                    <span class="name">
+                        <span ><b>AUTH_TYPE_KEY</b></span>
+                        <a href="#AUTH_TYPE_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;authType&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/auth/constants/auth.constants.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUTH_TYPE_KEY"></a>
+                    <span class="name">
+                        <span ><b>AUTH_TYPE_KEY</b></span>
+                        <a href="#AUTH_TYPE_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;authType&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REQUEST_USER_KEY"></a>
+                    <span class="name">
+                        <span ><b>REQUEST_USER_KEY</b></span>
+                        <a href="#REQUEST_USER_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;user&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>test/users/users.post.e2e-spec.sample-data.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="completeUser"></a>
+                    <span class="name">
+                        <span ><b>completeUser</b></span>
+                        <a href="#completeUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  email: faker.internet.email(),
+  password: &#x27;Password123#&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="missingEmail"></a>
+                    <span class="name">
+                        <span ><b>missingEmail</b></span>
+                        <a href="#missingEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  password: &#x27;Password123#&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="missingFirstName"></a>
+                    <span class="name">
+                        <span ><b>missingFirstName</b></span>
+                        <a href="#missingFirstName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  lastName: faker.person.lastName(),
+  email: faker.internet.email(),
+  password: &#x27;Password123#&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="missingPassword"></a>
+                    <span class="name">
+                        <span ><b>missingPassword</b></span>
+                        <a href="#missingPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  email: faker.internet.email(),
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ENV"></a>
+                    <span class="name">
+                        <span ><b>ENV</b></span>
+                        <a href="#ENV"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>process.env.NODE_ENV</code>
                     </td>
                 </tr>
 
@@ -251,6 +498,19 @@
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
 
@@ -262,7 +522,6 @@
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 
