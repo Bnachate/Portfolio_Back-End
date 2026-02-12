@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>tutorial_app documentation</title>
+        <title>porfolio_nestjs documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -60,20 +60,27 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="./" class="navbar-brand">tutorial_app documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">porfolio_nestjs documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -82,15 +89,16 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content getting-started">
+               <div class="content readme">
                    <div class="content-data">
 
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="http://neftjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
@@ -110,7 +118,33 @@
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 <h2>Description</h2>
-<p><a href="https://github.com/nestjs/nest">Nest</a> framework TypeScript starter repository.</p>
+<p>This repository serves as the backend for my personal portfolio. It provides a RESTful API to manage core data structures including users, professional experiences, projects, and contact inquiries.</p>
+<p><strong>Key Technical Stack:</strong></p>
+<ul>
+<li><strong>Framework:</strong> NestJS (TypeScript)</li>
+<li><strong>ORM:</strong> TypeORM</li>
+<li><strong>Database:</strong> PostgreSQL / MySQL</li>
+<li><strong>Documentation:</strong> Swagger (OpenAPI 3.0)</li>
+<li><strong>Security:</strong> JWT Authentication &amp; Class-Validator</li>
+</ul>
+<hr>
+<h2>API Documentation (Swagger)</h2>
+<p>The project includes a built-in interactive API explorer using Swagger. This allows you to visualize and interact with the API&#39;s resources without having any of the implementation logic.</p>
+<h3>How to Access</h3>
+<ol>
+<li>Start the application (<code>npm run start:dev</code>).</li>
+<li>Open your browser and navigate to:<blockquote>
+<p><strong><code>http://localhost:3000/api</code></strong></p>
+</blockquote>
+</li>
+</ol>
+<h3>What&#39;s Inside:</h3>
+<ul>
+<li><strong>Schemas:</strong> Detailed view of Data Transfer Objects (DTOs) and Entity structures.</li>
+<li><strong>Endpoints:</strong> Test <code>GET</code>, <code>POST</code>, <code>PATCH</code>, and <code>DELETE</code> requests directly from the UI.</li>
+<li><strong>Authentication:</strong> Clear labeling of public vs. protected routes.</li>
+</ul>
+<hr>
 <h2>Project setup</h2>
 <b>Example :</b><div><pre class="line-numbers"><code class="language-bash">$ npm install</code></pre></div><h2>Compile and run the project</h2>
 <b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># development
@@ -176,6 +210,9 @@ $ mau deploy</code></pre></div><p>With Mau, you can deploy your application in j
 
 
 
+
+
+
                    </div><div class="search-results">
     <div class="has-results">
         <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
@@ -201,10 +238,23 @@ $ mau deploy</code></pre></div><p>With Mau, you can deploy your application in j
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'readme';
             var COMPODOC_CURRENT_PAGE_URL = 'index.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
@@ -217,7 +267,6 @@ $ mau deploy</code></pre></div><p>With Mau, you can deploy your application in j
        <script src="./js/libs/es6-shim.min.js"></script>
        <script src="./js/libs/EventDispatcher.js"></script>
        <script src="./js/libs/promise.min.js"></script>
-       <script src="./js/libs/zepto.min.js"></script>
 
        <script src="./js/compodoc.js"></script>
 
