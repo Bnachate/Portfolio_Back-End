@@ -13,9 +13,9 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
 import { UsersService } from './providers/users.service';
 import {
+  ApiBody,
   ApiOperation,
   ApiParam,
-  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -41,32 +41,22 @@ export class UsersController {
     status: 200,
     description: 'Users fetched Successfully based on the query',
   })
-  @ApiParam({
-    name: 'id',
-    description: 'Get user with a specific id',
-    example: '1234',
-    required: true,
-  })
-  @ApiQuery({
-    name: 'limit',
-    type: 'number',
-    required: false,
-    description: 'The number of entries returned per query',
-    example: 10,
-  })
-  @ApiQuery({
-    name: 'page',
-    type: 'number',
-    required: false,
-    description:
-      'The position of the page number that you want the API to return',
-    example: 1,
-  })
   @Get('/:id')
   public getUser(@Param() param: GetUsersParamDto) {
     return this.usersService.findOneById(param);
   }
 
+  @ApiOperation({
+    summary: 'Create a user on the application',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Users created Successfully based on the query',
+  })
+  @ApiBody({
+    type: CreateUserDto,
+    description: 'The data to create a user',
+  })
   @Post()
   @Auth(AuthType.None)
   @UseInterceptors(ClassSerializerInterceptor)
@@ -75,10 +65,25 @@ export class UsersController {
   }
 
   @Post('/create-many')
+  @ApiBody({
+    type: CreateManyUserDto,
+    description: 'The data to create many users',
+  })
   public createManyUsers(@Body() createManyUserDtos: CreateManyUserDto) {
     return this.usersService.createManyUsers(createManyUserDtos);
   }
 
+  @ApiOperation({
+    summary: 'Update a user on the application',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Users updated Successfully based on the query',
+  })
+  @ApiBody({
+    type: PatchUserDto,
+    description: 'The data to update a user',
+  })
   @Patch()
   public patchUser(@Body() patchUserDto: PatchUserDto) {
     return this.usersService.updateUser(patchUserDto);
