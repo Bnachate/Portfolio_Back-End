@@ -33,7 +33,6 @@ const ENV = process.env.NODE_ENV;
     MailModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      // envFilePath: ['.env.development'],
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
       load: [appConfig, databaseConfig],
       validationSchema: environmentValidation,

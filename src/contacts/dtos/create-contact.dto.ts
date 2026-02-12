@@ -5,11 +5,11 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateContactDto {
   @ApiProperty({
-    example: 'This is the contact name',
+    example: 'John Doe',
     description: 'This is the contact name',
   })
   @IsString()
@@ -18,15 +18,16 @@ export class CreateContactDto {
   @IsNotEmpty()
   name: string;
 
+  @ApiProperty()
   @IsString()
   @IsEmail()
   @MaxLength(96)
   @IsNotEmpty()
   email: string;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: 'the subject of the message',
-    example: 'this is an example of message',
+    example: 'The great company: we need you !',
   })
   @IsNotEmpty()
   @IsString()
@@ -34,7 +35,7 @@ export class CreateContactDto {
   @MaxLength(1024)
   subject: string;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: 'This is the message deliver by the contact',
     example: 'The contact message',
   })

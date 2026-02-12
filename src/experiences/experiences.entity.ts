@@ -19,7 +19,14 @@ export class Experience {
     length: 512,
     nullable: false,
   })
-  title: string;
+  jobtitle: string;
+
+  @Column({
+    type: 'varchar',
+    length: 512,
+    nullable: false,
+  })
+  company: string;
 
   @Column({
     type: 'text',
@@ -32,14 +39,19 @@ export class Experience {
     length: 1024,
     nullable: false,
   })
-  projectImageUrl: string;
+  logoUrl: string;
 
   @Column({
-    type: 'varchar',
-    length: 1024,
+    type: 'timestamp',
     nullable: false,
   })
-  githubUrl: string;
+  startDate: Date;
+
+  @Column({
+    type: 'timestamp',
+    nullable: true,
+  })
+  endDate?: Date;
 
   @ManyToOne(() => User, (user) => user.experiences, {
     eager: true,

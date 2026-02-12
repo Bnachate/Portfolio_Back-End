@@ -1,5 +1,6 @@
 import {
   IsArray,
+  IsDate,
   IsInt,
   IsNotEmpty,
   IsOptional,
@@ -12,42 +13,43 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateExperienceDto {
   @ApiProperty({
-    example: 'This is a title',
-    description: 'This is the title for the portfolio website',
+    example: 'Developer Full Stack',
+    description: 'This is the job title of the experience',
   })
   @IsString()
   @MinLength(4)
   @MaxLength(512)
   @IsNotEmpty()
-  title: string;
+  jobtitle: string;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
+    example: 'TheBestCompanyEver',
+    description: 'This is the company name of the experience',
+  })
+  @IsString()
+  @MinLength(4)
+  @MaxLength(512)
+  @IsNotEmpty()
+  company: string;
+
+  @ApiProperty({
     description: 'This is the content of the experience',
-    example: 'The experience content',
+    example: 'The description of the experience',
   })
   @IsString()
   @IsNotEmpty()
   description: string;
 
   @ApiPropertyOptional({
-    description: 'An image for your experience',
+    description:
+      'this is the logo url of the company which you worked for in the experience',
     example: 'http://localhost.com/images/image1.jpg',
   })
   @IsOptional()
   @MinLength(4)
   @MaxLength(1024)
   @IsUrl()
-  projectImageUrl?: string;
-
-  @ApiPropertyOptional({
-    description: 'An image for your experience',
-    example: 'http://my-url.com',
-  })
-  @IsOptional()
-  @MinLength(4)
-  @MaxLength(1024)
-  @IsUrl()
-  githubUrl?: string;
+  logoUrl?: string;
 
   @ApiPropertyOptional({
     description: 'Array of ids of',
@@ -59,11 +61,27 @@ export class CreateExperienceDto {
   tags?: number[];
 
   @ApiProperty({
-    example:
+    description: 'The date you start the experience',
+    example: '2024-03-16T07:46:32+0000',
+  })
+  @IsDate()
+  @IsNotEmpty()
+  startDate: Date;
+
+  @ApiPropertyOptional({
+    description: 'The date you end the experience',
+    example: '2024-03-16T07:46:32+0000',
+  })
+  @IsDate()
+  @IsOptional()
+  endDate?: Date;
+
+  @ApiPropertyOptional({
+    example: 1,
+    description:
       'the position is related to the order you would like to retrieve the experience',
-    description: 'This is the title for the portfolio website',
   })
   @IsInt()
-  @IsNotEmpty()
-  position: number;
+  @IsOptional()
+  position?: number;
 }

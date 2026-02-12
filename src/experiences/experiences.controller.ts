@@ -1,6 +1,14 @@
-import { Controller, Query } from '@nestjs/common';
+import {
+  Controller,
+  Query,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { ExperiencesService } from './providers/experiences.service';
-import { Get, Post, Patch, Delete, Body, Param } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateExperienceDto } from './dtos/create-experience.dto';
 import { PatchExperienceDto } from './dtos/patch-experience.dto';
@@ -15,24 +23,36 @@ export class ExperiencesController {
   constructor(private readonly experiencesService: ExperiencesService) {}
 
   @Get()
+  @ApiOperation({ summary: 'Retrieve all experiences' })
+  @ApiResponse({
+    status: 200,
+    description: 'List of experiences retrieved successfully.',
+  })
   public getExperiences(@Query() experienceQuery: GetExperiencesDto) {
     return this.experiencesService.findAll(experienceQuery);
   }
 
   @Get('/:id')
+  @ApiOperation({ summary: 'Get a specific experience by ID' })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier of the experience',
+    example: 1,
+  })
+  @ApiResponse({ status: 200, description: 'Experience found successfully.' })
+  @ApiResponse({ status: 404, description: 'Experience not found.' })
   public getExperience(@Param() param: GetExperiencesParamDto) {
     return this.experiencesService.findOne(param);
   }
 
-  @ApiOperation({
-    summary: 'Creates a experience',
-  })
+  @Post()
+  @ApiOperation({ summary: 'Create a new experience' })
   @ApiResponse({
     status: 201,
-    description:
-      'You get a 201 response if you experience is created successfully',
+    description: 'The experience has been successfully created.',
   })
-  @Post()
+  @ApiResponse({ status: 400, description: 'Invalid input data.' })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   public createExperiences(
     @Body() createExperienceDto: CreateExperienceDto,
     @ActiveUser() activeUser: ActiveUserData,
@@ -43,37 +63,31 @@ export class ExperiencesController {
     );
   }
 
-  @ApiOperation({
-    summary: 'Updates an existing blog experience',
-  })
+  @Patch()
+  @ApiOperation({ summary: 'Update an existing experience' })
   @ApiResponse({
     status: 200,
-    description:
-      'You get a 200 response if you experience is updated successfully',
+    description: 'The experience has been successfully updated.',
   })
-  @Patch()
+  @ApiResponse({ status: 404, description: 'Experience not found.' })
   public updateExperience(@Body() patchExperienceDto: PatchExperienceDto) {
     return this.experiencesService.updateExperience(patchExperienceDto);
   }
 
-  @ApiOperation({
-    summary: 'Delete a user registered on the application',
-  })
+  @Delete('/:id')
+  @ApiOperation({ summary: 'Delete an experience' })
   @ApiResponse({
     status: 200,
-    description: 'Users deleted Successfully based on the query',
+    description: 'Experience deleted successfully.',
   })
+  @ApiResponse({ status: 404, description: 'Experience not found.' })
   @ApiParam({
     name: 'id',
-    description: 'Delete user with a specific id',
-    example: '1234',
+    description: 'ID of the experience to delete',
+    example: '1',
     required: true,
   })
-  @Delete('/:id')
-  public deleteUser(
-    // @Param() getUserParamDto: GetUsersParamDto,
-    @Param() param: GetExperiencesParamDto,
-  ) {
+  public deleteUser(@Param() param: GetExperiencesParamDto) {
     return this.experiencesService.deleteExperience(param);
   }
 }

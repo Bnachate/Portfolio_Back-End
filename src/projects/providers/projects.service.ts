@@ -20,7 +20,6 @@ import { Paginated } from 'src/common/pagination/interfaces/paginated.interface'
 import { CreateProjectsService } from './create-project.service';
 import { CreateProjectDto } from '../dtos/create-project.dto';
 import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
-// import { MetaOption } from 'src/meta-options/meta-options.entity';
 
 @Injectable()
 export class ProjectsService {
@@ -28,8 +27,6 @@ export class ProjectsService {
     private readonly usersService: UsersService,
     @InjectRepository(Project)
     private projectsRepository: Repository<Project>,
-    // @InjectRepository(MetaOption)
-    // private metaOptionRepository: Repository<MetaOption>,
     private readonly tagsService: TagsService,
 
     private readonly paginationProvider: PaginationProvider,
@@ -67,10 +64,6 @@ export class ProjectsService {
     try {
       project = await this.projectsRepository.findOne({
         where: { id: getProjectsParamDto.id },
-        // relations: {
-        //   metaOptions: true,
-        // },
-        // is better to use Eager
       });
     } catch {
       throw new RequestTimeoutException(

@@ -1,6 +1,13 @@
-import { Controller, Query } from '@nestjs/common';
+import {
+  Controller,
+  Query,
+  Get,
+  Post,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { ContactsService } from './providers/contacts.service';
-import { Get, Post, Delete, Body, Param } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateContactDto } from './dtos/create-contact.dto';
 import { GetContactsParamDto } from './dtos/get-contacts-params.dto';
@@ -14,24 +21,38 @@ export class ContactsController {
   constructor(private readonly contactsService: ContactsService) {}
 
   @Get()
+  @ApiOperation({ summary: 'Retrieve a list of all contacts' })
+  @ApiResponse({
+    status: 200,
+    description: 'Contacts retrieved successfully.',
+  })
   public getContacts(@Query() contactQuery: GetContactsDto) {
     return this.contactsService.findAll(contactQuery);
   }
 
   @Get('/:id')
+  @ApiOperation({ summary: 'Get a specific contact by ID' })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique ID of the contact',
+    example: 1,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Contact found successfully.',
+  })
+  @ApiResponse({ status: 404, description: 'Contact not found.' })
   public getContact(@Param() param: GetContactsParamDto) {
     return this.contactsService.findOne(param);
   }
 
-  @ApiOperation({
-    summary: 'Creates a contact',
-  })
+  @Post()
+  @ApiOperation({ summary: 'Create a new contact entry' })
   @ApiResponse({
     status: 201,
-    description:
-      'You get a 201 response if you contact is created successfully',
+    description: 'The contact has been created successfully.',
   })
-  @Post()
+  @ApiResponse({ status: 400, description: 'Invalid input data.' })
   public createContacts(
     @Body() createContactDto: CreateContactDto,
     @ActiveUser() activeUser: ActiveUserData,
@@ -39,24 +60,20 @@ export class ContactsController {
     return this.contactsService.createContact(createContactDto, activeUser);
   }
 
-  @ApiOperation({
-    summary: 'Delete a user registered on the application',
-  })
+  @Delete('/:id')
+  @ApiOperation({ summary: 'Delete a specific contact' })
   @ApiResponse({
     status: 200,
-    description: 'Users deleted Successfully based on the query',
+    description: 'Contact deleted successfully.',
   })
+  @ApiResponse({ status: 404, description: 'Contact not found.' })
   @ApiParam({
     name: 'id',
-    description: 'Delete user with a specific id',
-    example: '1234',
+    description: 'ID of the contact to delete',
+    example: '123',
     required: true,
   })
-  @Delete('/:id')
-  public deleteUser(
-    // @Param() getUserParamDto: GetUsersParamDto,
-    @Param() param: GetContactsParamDto,
-  ) {
+  public deleteUser(@Param() param: GetContactsParamDto) {
     return this.contactsService.deleteContact(param);
   }
 }

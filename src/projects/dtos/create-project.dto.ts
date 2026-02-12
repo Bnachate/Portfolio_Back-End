@@ -21,7 +21,7 @@ export class CreateProjectDto {
   @IsNotEmpty()
   title: string;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: 'This is the content of the project',
     example: 'The project content',
   })
@@ -29,21 +29,21 @@ export class CreateProjectDto {
   @IsNotEmpty()
   description: string;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: 'An image for your project',
     example: 'http://localhost.com/images/image1.jpg',
   })
-  @IsOptional()
+  @IsNotEmpty()
   @MinLength(4)
   @MaxLength(1024)
   @IsUrl()
   projectImageUrl?: string;
 
-  @ApiPropertyOptional({
-    description: 'An image for your project',
+  @ApiProperty({
+    description: 'The github url of your the project',
     example: 'http://my-url.com',
   })
-  @IsOptional()
+  @IsNotEmpty()
   @MinLength(4)
   @MaxLength(1024)
   @IsUrl()
@@ -58,12 +58,12 @@ export class CreateProjectDto {
   @IsInt({ each: true })
   tags?: number[];
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example:
       'the position is related to the order you would like to retrieve the project',
     description: 'This is the title for the portfolio website',
   })
   @IsInt()
-  @IsNotEmpty()
-  position: number;
+  @IsOptional()
+  position?: number;
 }

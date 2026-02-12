@@ -12,28 +12,33 @@ import {
 } from 'class-validator';
 
 export class CreateUserDto {
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(96)
   firstName: string;
 
+  @ApiProperty()
   @IsString()
   @IsOptional()
   @MinLength(3)
   @MaxLength(96)
   lastName?: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsIn([0, 1])
   admin: 0 | 1;
 
+  @ApiProperty()
   @IsString()
   @IsEmail()
   @MaxLength(96)
   @IsNotEmpty()
   email: string;
 
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   @MinLength(8)
