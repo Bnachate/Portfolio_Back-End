@@ -9,7 +9,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateContactDto {
   @ApiProperty({
-    example: 'This is the contact name',
+    example: 'John Doe',
     description: 'This is the contact name',
   })
   @IsString()
@@ -27,7 +27,7 @@ export class CreateContactDto {
 
   @ApiProperty({
     description: 'the subject of the message',
-    example: 'this is an example of message',
+    example: 'The great company: we need you !',
   })
   @IsNotEmpty()
   @IsString()

@@ -1,6 +1,14 @@
-import { Controller, Query } from '@nestjs/common';
+import {
+  Controller,
+  Query,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { ProjectsService } from './providers/projects.service';
-import { Get, Post, Patch, Delete, Body, Param } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateProjectDto } from './dtos/create-project.dto';
 import { PatchProjectDto } from './dtos/patch-project.dto';
@@ -15,24 +23,38 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Get()
+  @ApiOperation({ summary: 'Fetch all projects' })
+  @ApiResponse({
+    status: 200,
+    description: 'Projects retrieved successfully.',
+  })
   public getProjects(@Query() projectQuery: GetProjectsDto) {
     return this.projectsService.findAll(projectQuery);
   }
 
   @Get('/:id')
+  @ApiOperation({ summary: 'Get a project by its ID' })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier of the project',
+    example: '1',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Project retrieved successfully.',
+  })
+  @ApiResponse({ status: 404, description: 'Project not found.' })
   public getProject(@Param() param: GetProjectsParamDto) {
     return this.projectsService.findOne(param);
   }
 
-  @ApiOperation({
-    summary: 'Creates a project',
-  })
+  @Post()
+  @ApiOperation({ summary: 'Create a new project' })
   @ApiResponse({
     status: 201,
-    description:
-      'You get a 201 response if you project is created successfully',
+    description: 'The project has been created successfully.',
   })
-  @Post()
+  @ApiResponse({ status: 400, description: 'Invalid project data.' })
   public createProjects(
     @Body() createProjectDto: CreateProjectDto,
     @ActiveUser() activeUser: ActiveUserData,
@@ -40,33 +62,30 @@ export class ProjectsController {
     return this.projectsService.createProject(createProjectDto, activeUser);
   }
 
-  @ApiOperation({
-    summary: 'Updates an existing blog project',
-  })
+  @Patch()
+  @ApiOperation({ summary: 'Update an existing project' })
   @ApiResponse({
     status: 200,
-    description:
-      'You get a 200 response if you project is updated successfully',
+    description: 'The project has been updated successfully.',
   })
-  @Patch()
+  @ApiResponse({ status: 404, description: 'Project not found.' })
   public updateProject(@Body() patchProjectDto: PatchProjectDto) {
     return this.projectsService.updateProject(patchProjectDto);
   }
 
-  @ApiOperation({
-    summary: 'Delete a user registered on the application',
-  })
+  @Delete('/:id')
+  @ApiOperation({ summary: 'Delete a specific project' })
   @ApiResponse({
     status: 200,
-    description: 'Users deleted Successfully based on the query',
+    description: 'Project deleted successfully.',
   })
+  @ApiResponse({ status: 404, description: 'Project not found.' })
   @ApiParam({
     name: 'id',
-    description: 'Delete user with a specific id',
-    example: '1234',
+    description: 'The ID of the project to delete',
+    example: '1',
     required: true,
   })
-  @Delete('/:id')
   public deleteUser(@Param() param: GetProjectsParamDto) {
     return this.projectsService.deleteProject(param);
   }

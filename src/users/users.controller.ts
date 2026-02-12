@@ -30,79 +30,90 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
+  @ApiOperation({ summary: 'Retrieve all registered users' })
+  @ApiResponse({
+    status: 200,
+    description: 'Users list retrieved successfully.',
+  })
   public getUsers() {
     return this.usersService.findAll();
   }
 
-  @ApiOperation({
-    summary: 'Fetches a user registered on the application',
+  @Get('/:id')
+  @ApiOperation({ summary: 'Get a specific user by ID' })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique ID of the user',
+    example: '1',
   })
   @ApiResponse({
     status: 200,
-    description: 'Users fetched Successfully based on the query',
+    description: 'User details fetched successfully.',
   })
-  @Get('/:id')
+  @ApiResponse({ status: 404, description: 'User not found.' })
   public getUser(@Param() param: GetUsersParamDto) {
     return this.usersService.findOneById(param);
   }
 
-  @ApiOperation({
-    summary: 'Create a user on the application',
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'Users created Successfully based on the query',
-  })
-  @ApiBody({
-    type: CreateUserDto,
-    description: 'The data to create a user',
-  })
   @Post()
   @Auth(AuthType.None)
   @UseInterceptors(ClassSerializerInterceptor)
+  @ApiOperation({ summary: 'Register a new user' })
+  @ApiBody({
+    type: CreateUserDto,
+    description: 'The data required to create a new user',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'User created successfully.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Invalid user data or email already exists.',
+  })
   public createUsers(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }
 
   @Post('/create-many')
+  @ApiOperation({ summary: 'Bulk create multiple users' })
   @ApiBody({
     type: CreateManyUserDto,
-    description: 'The data to create many users',
+    description: 'List of users to be created',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Users created successfully in bulk.',
   })
   public createManyUsers(@Body() createManyUserDtos: CreateManyUserDto) {
     return this.usersService.createManyUsers(createManyUserDtos);
   }
 
-  @ApiOperation({
-    summary: 'Update a user on the application',
-  })
+  @Patch()
+  @ApiOperation({ summary: 'Update an existing user' })
+  @ApiBody({ type: PatchUserDto, description: 'The data fields to update' })
   @ApiResponse({
     status: 200,
-    description: 'Users updated Successfully based on the query',
+    description: 'User updated successfully.',
   })
-  @ApiBody({
-    type: PatchUserDto,
-    description: 'The data to update a user',
-  })
-  @Patch()
+  @ApiResponse({ status: 404, description: 'User not found.' })
   public patchUser(@Body() patchUserDto: PatchUserDto) {
     return this.usersService.updateUser(patchUserDto);
   }
 
-  @ApiOperation({
-    summary: 'Delete a user registered on the application',
+  @Delete('/:id')
+  @ApiOperation({ summary: 'Delete a user by ID' })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique ID of the user to remove',
+    example: '1',
+    required: true,
   })
   @ApiResponse({
     status: 200,
-    description: 'Users deleted Successfully based on the query',
+    description: 'User deleted successfully.',
   })
-  @ApiParam({
-    name: 'id',
-    description: 'Delete user with a specific id',
-    example: '1234',
-    required: true,
-  })
-  @Delete('/:id')
+  @ApiResponse({ status: 404, description: 'User not found.' })
   public deleteUser(@Param() param: GetUsersParamDto) {
     return this.usersService.deleteUser(param);
   }
