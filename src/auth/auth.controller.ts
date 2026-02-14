@@ -4,11 +4,16 @@ import { SignInDto } from './dtos/signin.dto';
 import { Auth } from './decorator/auth.decorator';
 import { AuthType } from './enums/auth-type.enum';
 import { RefreshTokenDto } from './dtos/refresh-token.dto';
+import { ApiResponse } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @ApiResponse({
+    status: 201,
+    description: 'You get a 201 response if the user sign in successfully',
+  })
   @Post('sign-in')
   @HttpCode(HttpStatus.OK)
   @Auth(AuthType.None)
@@ -16,6 +21,11 @@ export class AuthController {
     return this.authService.signIn(signInDto);
   }
 
+  @ApiResponse({
+    status: 200,
+    description:
+      'You get a 200 response if the user refresh his token successfully',
+  })
   @Post('refresh-tokens')
   @HttpCode(HttpStatus.OK)
   @Auth(AuthType.None)

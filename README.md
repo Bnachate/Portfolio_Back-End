@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="http://neftjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
@@ -23,7 +23,32 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This repository serves as the backend for my personal portfolio. It provides a RESTful API to manage core data structures including users, professional experiences, projects, and contact inquiries.
+
+**Key Technical Stack:**
+* **Framework:** NestJS (TypeScript)
+* **ORM:** TypeORM
+* **Database:** PostgreSQL / MySQL
+* **Documentation:** Swagger (OpenAPI 3.0)
+* **Security:** JWT Authentication & Class-Validator
+
+---
+
+## API Documentation (Swagger)
+
+The project includes a built-in interactive API explorer using Swagger. This allows you to visualize and interact with the API's resources without having any of the implementation logic.
+
+### How to Access
+1. Start the application (`npm run start:dev`).
+2. Open your browser and navigate to:
+   > **`http://localhost:3000/api`**
+
+### What's Inside:
+* **Schemas:** Detailed view of Data Transfer Objects (DTOs) and Entity structures.
+* **Endpoints:** Test `GET`, `POST`, `PATCH`, and `DELETE` requests directly from the UI.
+* **Authentication:** Clear labeling of public vs. protected routes.
+
+---
 
 ## Project setup
 

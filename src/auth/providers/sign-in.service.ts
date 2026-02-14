@@ -19,7 +19,6 @@ export class SignInService {
     @Inject(HashingService)
     private readonly hashingService: HashingService,
 
-    // @Inject(forwardRef(() => GenerateTokensService))
     private readonly generateTokensService: GenerateTokensService,
   ) {}
 

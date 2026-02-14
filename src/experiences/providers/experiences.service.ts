@@ -20,7 +20,6 @@ import { Paginated } from 'src/common/pagination/interfaces/paginated.interface'
 import { CreateExperiencesService } from './create-experience.service';
 import { CreateExperienceDto } from '../dtos/create-experience.dto';
 import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
-// import { MetaOption } from 'src/meta-options/meta-options.entity';
 
 @Injectable()
 export class ExperiencesService {
@@ -28,8 +27,6 @@ export class ExperiencesService {
     private readonly usersService: UsersService,
     @InjectRepository(Experience)
     private experiencesRepository: Repository<Experience>,
-    // @InjectRepository(MetaOption)
-    // private metaOptionRepository: Repository<MetaOption>,
     private readonly tagsService: TagsService,
 
     private readonly paginationProvider: PaginationProvider,
@@ -67,10 +64,6 @@ export class ExperiencesService {
     try {
       experience = await this.experiencesRepository.findOne({
         where: { id: getExperiencesParamDto.id },
-        // relations: {
-        //   metaOptions: true,
-        // },
-        // is better to use Eager
       });
     } catch {
       throw new RequestTimeoutException(
