@@ -32,7 +32,7 @@ export class AuthenticationGuard implements CanActivate {
     console.log('Includes None?', authTypes.includes(AuthType.None));
     console.log('AuthType.None value:', AuthType.None);
     console.log('AuthType.Bearer value:', AuthType.Bearer);
-    
+
     // Check each auth type
     for (const type of authTypes) {
       console.log('Checking type:', type);
