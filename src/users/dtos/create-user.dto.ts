@@ -28,8 +28,7 @@ export class CreateUserDto {
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsIn([0, 1])
-  admin: 0 | 1;
+  admin: boolean;
 
   @ApiProperty()
   @IsString()

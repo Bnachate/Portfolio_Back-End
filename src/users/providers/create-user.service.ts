@@ -30,7 +30,8 @@ export class CreateUserService {
       existingUser = await this.usersRepository.findOne({
         where: { email: createUserDto.email },
       });
-    } catch {
+    } catch (error) {
+      console.error('Error checking existing user:', error);
       throw new RequestTimeoutException(
         'Unable to process your request at the moment. Please try later',
         {
@@ -49,7 +50,8 @@ export class CreateUserService {
     });
     try {
       newUser = await this.usersRepository.save(newUser);
-    } catch {
+    } catch (error) {
+      console.error('Error saving user to database:', error);
       throw new RequestTimeoutException(
         'Unable to process your request at the moment. Please try later',
         {

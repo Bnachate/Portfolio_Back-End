@@ -24,12 +24,11 @@ export class User {
   lastName?: string;
 
   @Column({
-    type: 'smallint',
-    width: 1,
+    type: 'boolean',
     nullable: false,
-    default: 0,
+    default: false,
   })
-  admin: 0 | 1;
+  admin: boolean;
 
   @Column({
     type: 'varchar',
