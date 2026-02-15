@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsString,
   IsEmail,
@@ -49,46 +49,46 @@ export class CreateUserDto {
   })
   password: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'This is the job title',
     example: 'Developer Full-Stack',
   })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @MaxLength(150)
   job: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'This is the description below job title',
     example: 'The hero title part',
   })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   title: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'This is the description of hero part',
     example: 'The hero content',
   })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   description: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'the github link',
     example: 'https://github.com/[username]/',
   })
-  @IsNotEmpty()
+  @IsOptional()
   @MinLength(4)
   @MaxLength(1024)
   @IsUrl()
   githubUrl: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'the linked In link',
     example: 'https://www.linkedin.com/in/[username]/',
   })
-  @IsNotEmpty()
+  @IsOptional()
   @MinLength(4)
   @MaxLength(1024)
   @IsUrl()
