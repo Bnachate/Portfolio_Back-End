@@ -51,6 +51,11 @@ const ENV = process.env.NODE_ENV;
           'database.autoLoadEntities',
         ),
         synchronize: configService.get<boolean>('database.synchronize'),
+        // SSL configuration for production (Railway, Heroku, etc.)
+        ssl:
+          process.env.NODE_ENV === 'production'
+            ? { rejectUnauthorized: false }
+            : false,
       }),
     }),
   ],
