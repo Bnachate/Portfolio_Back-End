@@ -26,9 +26,13 @@ export class CreateUserDto {
   @MaxLength(96)
   lastName?: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description:
+      'Whether the user is an admin. Accepts boolean (true/false) or number (0/1)',
+    example: true,
+  })
   @IsNotEmpty()
-  admin: boolean;
+  admin: boolean | number;
 
   @ApiProperty()
   @IsString()

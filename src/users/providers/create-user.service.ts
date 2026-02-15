@@ -46,6 +46,7 @@ export class CreateUserService {
     }
     let newUser = this.usersRepository.create({
       ...createUserDto,
+      admin: createUserDto.admin ? 1 : 0, // Convert boolean/number to 0 or 1
       password: await this.hashingService.hashPassword(createUserDto.password),
     });
     try {

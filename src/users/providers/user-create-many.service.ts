@@ -31,7 +31,10 @@ export class UserCreateManyProvider {
             `The user with email ${userDto.email} already exists.`,
           );
         }
-        const userInstance = queryRunner.manager.create(User, userDto);
+        const userInstance = queryRunner.manager.create(User, {
+          ...userDto,
+          admin: userDto.admin ? 1 : 0, // Convert boolean/number to 0 or 1
+        });
         try {
           const result = await queryRunner.manager.save(userInstance);
           newUsers.push(result);
