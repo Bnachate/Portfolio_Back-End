@@ -1,3 +1,13 @@
+POST https//portfolioback-end-production.up.railway.app/users/
+Content-Type: application/json
+
+{
+  "firstName": "Brahim",
+  "lastName": "Nachate",
+  "admin": true,
+  "email": "nachatim@gmail.com",
+  "password": "p1a#ssword"
+}
 POST http://localhost:3500/users
 Content-Type: application/json
 
