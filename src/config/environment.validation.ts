@@ -4,11 +4,29 @@ export default Joi.object({
   NODE_ENV: Joi.string()
     .valid('development', 'test', 'production', 'staging')
     .default('development'),
+  // Railway provides DATABASE_URL, make individual DB vars optional if DATABASE_URL exists
+  DATABASE_URL: Joi.string().optional(),
   DB_PORT: Joi.number().port().default(5432),
-  DB_PASSWORD: Joi.string().required(),
-  DB_HOST: Joi.string().required(),
-  DB_USERNAME: Joi.string().required(),
-  DB_NAME: Joi.string().required(),
+  DB_PASSWORD: Joi.string().when('DATABASE_URL', {
+    is: Joi.exist(),
+    then: Joi.optional(),
+    otherwise: Joi.required(),
+  }),
+  DB_HOST: Joi.string().when('DATABASE_URL', {
+    is: Joi.exist(),
+    then: Joi.optional(),
+    otherwise: Joi.required(),
+  }),
+  DB_USERNAME: Joi.string().when('DATABASE_URL', {
+    is: Joi.exist(),
+    then: Joi.optional(),
+    otherwise: Joi.required(),
+  }),
+  DB_NAME: Joi.string().when('DATABASE_URL', {
+    is: Joi.exist(),
+    then: Joi.optional(),
+    otherwise: Joi.required(),
+  }),
   PROFILE_API_KEY: Joi.string().required(),
   JWT_SECRET: Joi.string().required(),
   JWT_TOKEN_AUDIENCE: Joi.string().required(),
