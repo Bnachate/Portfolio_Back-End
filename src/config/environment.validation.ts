@@ -4,7 +4,6 @@ export default Joi.object({
   NODE_ENV: Joi.string()
     .valid('development', 'test', 'production', 'staging')
     .default('development'),
-  // Railway provides DATABASE_URL or individual DB vars
   DATABASE_URL: Joi.string().optional(),
   DB_PORT: Joi.number().port().optional().default(5432),
   DB_PASSWORD: Joi.string().optional(),

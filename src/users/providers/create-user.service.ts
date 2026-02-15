@@ -57,12 +57,11 @@ export class CreateUserService {
         },
       );
     }
-    
-    // Send welcome email asynchronously, don't block user creation if it fails
-    this.mailService.sendUserWelcome(newUser).catch((error) => {
-      console.error('Failed to send welcome email:', error);
-    });
-    
+
+    // this.mailService.sendUserWelcome(newUser).catch((error) => {
+    //   console.error('Failed to send welcome email:', error);
+    // });
+
     return newUser;
   }
 }

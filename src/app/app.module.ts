@@ -52,18 +52,12 @@ const ENV = process.env.NODE_ENV;
             'database.autoLoadEntities',
           ),
           synchronize: configService.get<boolean>('database.synchronize'),
-          // SSL configuration for production (Railway, Heroku, etc.)
           ssl:
             process.env.NODE_ENV === 'production'
               ? { rejectUnauthorized: false }
               : false,
-          // Add logging to debug connection issues
           logging: process.env.NODE_ENV === 'production',
         };
-        console.log('TypeORM connecting with config:', {
-          ...config,
-          password: '***', // Hide password in logs
-        });
         return config;
       },
     }),
