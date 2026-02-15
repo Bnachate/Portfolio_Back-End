@@ -28,7 +28,12 @@ export class AuthenticationGuard implements CanActivate {
       [context.getHandler(), context.getClass()],
     ) ?? [AuthenticationGuard.defaultAuthType];
 
+    console.log('Auth Types:', authTypes);
+    console.log('Includes None?', authTypes.includes(AuthType.None));
+    console.log('AuthType.None value:', AuthType.None);
+
     if (authTypes.includes(AuthType.None)) {
+      console.log('Returning true for AuthType.None');
       return true;
     }
 
