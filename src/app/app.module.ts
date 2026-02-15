@@ -40,23 +40,32 @@ const ENV = process.env.NODE_ENV;
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('database.host'),
-        port: configService.get<number>('database.port'),
-        username: configService.get<string>('database.user'),
-        password: configService.get<string>('database.password'),
-        database: configService.get<string>('database.name'),
-        autoLoadEntities: configService.get<boolean>(
-          'database.autoLoadEntities',
-        ),
-        synchronize: configService.get<boolean>('database.synchronize'),
-        // SSL configuration for production (Railway, Heroku, etc.)
-        ssl:
-          process.env.NODE_ENV === 'production'
-            ? { rejectUnauthorized: false }
-            : false,
-      }),
+      useFactory: (configService: ConfigService) => {
+        const config = {
+          type: 'postgres' as const,
+          host: configService.get<string>('database.host'),
+          port: configService.get<number>('database.port'),
+          username: configService.get<string>('database.user'),
+          password: configService.get<string>('database.password'),
+          database: configService.get<string>('database.name'),
+          autoLoadEntities: configService.get<boolean>(
+            'database.autoLoadEntities',
+          ),
+          synchronize: configService.get<boolean>('database.synchronize'),
+          // SSL configuration for production (Railway, Heroku, etc.)
+          ssl:
+            process.env.NODE_ENV === 'production'
+              ? { rejectUnauthorized: false }
+              : false,
+          // Add logging to debug connection issues
+          logging: process.env.NODE_ENV === 'production',
+        };
+        console.log('TypeORM connecting with config:', {
+          ...config,
+          password: '***', // Hide password in logs
+        });
+        return config;
+      },
     }),
   ],
   providers: [
