@@ -5,7 +5,7 @@ Content-Type: application/json
   "firstName": "Brahim",
   "lastName": "Nachate",
   "admin": true,
-  "email": "nachate.brahim@gmail.com",
+  "email": "nachatim@gmail.com",
   "password": "p1a#ssword",
   "job": "Développeur Fullstack",
   "title": "Passionné par l'architecture logicielle",
