@@ -15,7 +15,7 @@ export class MailService {
       context: {
         name: user.firstName,
         email: user.email,
-        loginUrl: 'http://localhost:3000',
+        loginUrl: 'http://localhost:3500',
         actionUrl: 'https://bnachate.github.io/Portfolio/',
       },
     });
