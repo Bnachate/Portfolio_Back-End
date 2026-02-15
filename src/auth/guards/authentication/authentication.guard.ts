@@ -31,10 +31,15 @@ export class AuthenticationGuard implements CanActivate {
     console.log('Auth Types:', authTypes);
     console.log('Includes None?', authTypes.includes(AuthType.None));
     console.log('AuthType.None value:', AuthType.None);
-
-    if (authTypes.includes(AuthType.None)) {
-      console.log('Returning true for AuthType.None');
-      return true;
+    console.log('AuthType.Bearer value:', AuthType.Bearer);
+    
+    // Check each auth type
+    for (const type of authTypes) {
+      console.log('Checking type:', type);
+      if (type === AuthType.None) {
+        console.log('Found AuthType.None, returning true');
+        return true;
+      }
     }
 
     const guards = authTypes.map((type) => this.authTypeGuardMap[type]);
