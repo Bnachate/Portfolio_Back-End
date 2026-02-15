@@ -56,6 +56,7 @@ export class UsersController {
   }
 
   @Post()
+  @Auth(AuthType.None)
   @UseInterceptors(ClassSerializerInterceptor)
   @ApiOperation({ summary: 'Register a new user' })
   @ApiBody({
@@ -70,7 +71,6 @@ export class UsersController {
     status: 400,
     description: 'Invalid user data or email already exists.',
   })
-  @Auth(AuthType.None)
   public createUsers(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }
