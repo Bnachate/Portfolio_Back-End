@@ -3,6 +3,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 export function appCreate(app: INestApplication): void {
+  const BASE_URL = process.env.BASE_URL;
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -16,9 +17,9 @@ export function appCreate(app: INestApplication): void {
 
   const config = new DocumentBuilder()
     .setTitle('NestJs Masterclass - Blog app API')
-    .setDescription('Use the base API URL as http://localhost:3000')
-    .setTermsOfService('http://localhost:3000/terms_of-service')
-    .addServer('http://localhost:3000')
+    .setDescription(`Use the base API URL as ${BASE_URL}`)
+    .setTermsOfService(`${BASE_URL}/terms_of_service`)
+    .addServer(BASE_URL ?? 'http://localhost:3000')
     .setVersion('1.0')
     .build();
 
