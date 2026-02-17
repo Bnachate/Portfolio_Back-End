@@ -95,7 +95,9 @@ export class UsersService {
 
       const patchData: any = {
         ...patchUserDto,
-        ...(patchUserDto.admin !== undefined && { admin: patchUserDto.admin ? 1 : 0 }),
+        ...(patchUserDto.admin !== undefined && {
+          admin: patchUserDto.admin ? 1 : 0,
+        }),
       };
       let updatedUser = this.usersRepository.merge(existingUser, patchData);
       try {
