@@ -26,10 +26,10 @@ export class User {
   @Column({
     type: 'smallint',
     width: 1,
-    nullable: false,
+    nullable: true,
     default: 0,
   })
-  admin: number;
+  admin: 0 | 1;
 
   @Column({
     type: 'varchar',

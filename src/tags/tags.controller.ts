@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { CreateTagDto } from './dtos/create-tag.dto';
 import { TagsService } from './providers/tags.service';
 import { ApiResponse } from '@nestjs/swagger';
@@ -7,6 +7,15 @@ import { ApiResponse } from '@nestjs/swagger';
 export class TagsController {
   constructor(private readonly tagsService: TagsService) {}
 
+  @ApiResponse({
+    status: 200,
+    description:
+      'You get a 200 response if your tags are retrieved successfully',
+  })
+  @Get()
+  public getTags() {
+    return this.tagsService.findAll();
+  }
   @ApiResponse({
     status: 201,
     description: 'You get a 201 response if your tag is created successfully',

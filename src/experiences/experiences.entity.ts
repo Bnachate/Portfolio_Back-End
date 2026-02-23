@@ -19,7 +19,7 @@ export class Experience {
     length: 512,
     nullable: false,
   })
-  jobtitle: string;
+  job: string;
 
   @Column({
     type: 'varchar',
@@ -37,7 +37,7 @@ export class Experience {
   @Column({
     type: 'varchar',
     length: 1024,
-    nullable: false,
+    nullable: true,
   })
   logoUrl: string;
 

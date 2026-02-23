@@ -33,7 +33,7 @@ export class UserCreateManyProvider {
         }
         const userInstance = queryRunner.manager.create(User, {
           ...userDto,
-          admin: userDto.admin ? 1 : 0, // Convert boolean/number to 0 or 1
+          admin: userDto.admin ? 1 : 0,
         });
         try {
           const result = await queryRunner.manager.save(userInstance);

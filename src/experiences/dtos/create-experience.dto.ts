@@ -20,7 +20,7 @@ export class CreateExperienceDto {
   @MinLength(4)
   @MaxLength(512)
   @IsNotEmpty()
-  jobtitle: string;
+  job: string;
 
   @ApiProperty({
     example: 'TheBestCompanyEver',
