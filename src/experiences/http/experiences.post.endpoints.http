@@ -1,11 +1,11 @@
 POST http://localhost:3500/experiences
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcwNzYyODI0LCJleHAiOjE3NzA3NjY0MjQsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.TP5H-h3W37L90XIRTM_zsntUU8fUWPaJ4a9_TDswLps
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcxNjAzODg4LCJleHAiOjE3NzE2MDc0ODgsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ._cg-TfENe7wpH7oFn3COx06juA-R-J7VbVeHnLPODgg
 {
-  "title": "Développement d'une plateforme E-commerce",
-  "description": "Conception et réalisation d'une application fullstack avec NestJS et React.",
-  "projectImageUrl": "https://mon-portfolio.com/images/projet1.jpg",
-  "githubUrl": "https://github.com/mon-profil/mon-projet",
-  "position": 1,
-    "tags": []
-  }
+    "job": "Développeur Front-End Senior",
+    "company": "Tech Innovation",
+    "description": "Développement d'applications web modernes avec React et TypeScript",
+    "startDate": "2022-01-01",
+    "endDate": null,
+    "tags": [1, 2]
+}
