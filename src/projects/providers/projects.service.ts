@@ -91,26 +91,25 @@ export class ProjectsService {
   }
 
   public async updateProject(patchProjectDto: PatchProjectDto) {
-    let tags: Tag[];
+    let resolvedTags: Tag[] | undefined;
     let project: Project | null;
-    try {
-      tags = await this.tagsService.findMultipleTags(patchProjectDto.tags);
-    } catch {
-      throw new RequestTimeoutException(
-        'Unable to process your request at the moment. Please try later',
-        {
-          description: 'Error connecting to the database',
-        },
-      );
-    }
-    if (
-      !tags ||
-      !patchProjectDto?.tags ||
-      tags.length !== patchProjectDto.tags.length
-    ) {
-      throw new BadRequestException(
-        'Please check your tag Uds and ensure they are correct',
-      );
+    const { tags: dtoTags, ...projectPatchData } = patchProjectDto;
+    if (dtoTags !== undefined) {
+      try {
+        resolvedTags = await this.tagsService.findMultipleTags(dtoTags);
+      } catch {
+        throw new RequestTimeoutException(
+          'Unable to process your request at the moment. Please try later',
+          {
+            description: 'Error connecting to the database',
+          },
+        );
+      }
+      if (!resolvedTags || resolvedTags.length !== dtoTags.length) {
+        throw new BadRequestException(
+          'Please check your tag Uds and ensure they are correct',
+        );
+      }
     }
     try {
       project = await this.projectsRepository.findOne({
@@ -130,8 +129,8 @@ export class ProjectsService {
       );
     }
     const newProject = {
-      ...patchProjectDto,
-      tags: tags,
+      ...projectPatchData,
+      ...(resolvedTags !== undefined ? { tags: resolvedTags } : {}),
     };
     let updateProject = this.projectsRepository.merge(project, newProject);
     try {

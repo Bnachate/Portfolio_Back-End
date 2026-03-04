@@ -91,26 +91,25 @@ export class ExperiencesService {
   }
 
   public async updateExperience(patchExperienceDto: PatchExperienceDto) {
-    let tags: Tag[];
+    let resolvedTags: Tag[] | undefined;
     let experience: Experience | null;
-    try {
-      tags = await this.tagsService.findMultipleTags(patchExperienceDto.tags);
-    } catch {
-      throw new RequestTimeoutException(
-        'Unable to process your request at the moment. Please try later',
-        {
-          description: 'Error connecting to the database',
-        },
-      );
-    }
-    if (
-      !tags ||
-      !patchExperienceDto?.tags ||
-      tags.length !== patchExperienceDto.tags.length
-    ) {
-      throw new BadRequestException(
-        'Please check your tag Uds and ensure they are correct',
-      );
+    const { tags: dtoTags, ...experiencePatchData } = patchExperienceDto;
+    if (dtoTags !== undefined) {
+      try {
+        resolvedTags = await this.tagsService.findMultipleTags(dtoTags);
+      } catch {
+        throw new RequestTimeoutException(
+          'Unable to process your request at the moment. Please try later',
+          {
+            description: 'Error connecting to the database',
+          },
+        );
+      }
+      if (!resolvedTags || resolvedTags.length !== dtoTags.length) {
+        throw new BadRequestException(
+          'Please check your tag Uds and ensure they are correct',
+        );
+      }
     }
     try {
       experience = await this.experiencesRepository.findOne({
@@ -130,8 +129,8 @@ export class ExperiencesService {
       );
     }
     const newExperience = {
-      ...patchExperienceDto,
-      tags: tags,
+      ...experiencePatchData,
+      ...(resolvedTags !== undefined ? { tags: resolvedTags } : {}),
     };
     let updateExperience = this.experiencesRepository.merge(
       experience,
@@ -150,6 +149,7 @@ export class ExperiencesService {
     }
     return updateExperience;
   }
+
   public async deleteExperience(param: GetExperiencesParamDto) {
     const experienceId = param.id;
     await this.experiencesRepository.delete(experienceId);
