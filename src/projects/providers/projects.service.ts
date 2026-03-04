@@ -128,11 +128,13 @@ export class ProjectsService {
         'The project does not exists in the database',
       );
     }
-    const newProject = {
-      ...projectPatchData,
-      ...(resolvedTags !== undefined ? { tags: resolvedTags } : {}),
-    };
-    let updateProject = this.projectsRepository.merge(project, newProject);
+    let updateProject = this.projectsRepository.merge(
+      project,
+      projectPatchData,
+    );
+    if (resolvedTags !== undefined) {
+      updateProject.tags = resolvedTags;
+    }
     try {
       updateProject = await this.projectsRepository.save(updateProject);
     } catch {

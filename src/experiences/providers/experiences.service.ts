@@ -128,14 +128,13 @@ export class ExperiencesService {
         'The project does not exists in the database',
       );
     }
-    const newExperience = {
-      ...experiencePatchData,
-      ...(resolvedTags !== undefined ? { tags: resolvedTags } : {}),
-    };
     let updateExperience = this.experiencesRepository.merge(
       experience,
-      newExperience,
+      experiencePatchData,
     );
+    if (resolvedTags !== undefined) {
+      updateExperience.tags = resolvedTags;
+    }
     try {
       updateExperience =
         await this.experiencesRepository.save(updateExperience);
