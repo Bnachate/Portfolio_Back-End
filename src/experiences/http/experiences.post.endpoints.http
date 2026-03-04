@@ -1,11 +1,22 @@
 POST http://localhost:3500/experiences
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcxNjAzODg4LCJleHAiOjE3NzE2MDc0ODgsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ._cg-TfENe7wpH7oFn3COx06juA-R-J7VbVeHnLPODgg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcyNjQxNzkyLCJleHAiOjE3NzI2NDUzOTIsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ.LeOO74Yl4I6Kbdy8xEOzLJS3AyyH19CJx6lWN6u0fCY
 {
     "job": "Développeur Front-End Senior",
     "company": "Tech Innovation",
     "description": "Développement d'applications web modernes avec React et TypeScript",
     "startDate": "2022-01-01",
+    "endDate": null,
+    "tags": [1, 2]
+}
+POST http://localhost:3500/experiences
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcyNjQxNzkyLCJleHAiOjE3NzI2NDUzOTIsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ.LeOO74Yl4I6Kbdy8xEOzLJS3AyyH19CJx6lWN6u0fCY
+{
+    "job": "Développeur Front-End Junior",
+    "company": "Ipocamp",
+    "description": "Développement d'applications web modernes avec React et TypeScript",
+    "startDate": "2019-01-01",
     "endDate": null,
     "tags": [1, 2]
 }
