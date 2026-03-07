@@ -26,8 +26,8 @@ export class CreateUserDto {
   @MaxLength(96)
   lastName?: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
+  @ApiPropertyOptional()
+  @IsOptional()
   @IsIn([0, 1])
   admin: 0 | 1;
 

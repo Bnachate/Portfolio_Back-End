@@ -10,6 +10,15 @@ export class TagsService {
     @InjectRepository(Tag)
     private tagRepository: Repository<Tag>,
   ) {}
+
+  public async findAll() {
+    const allTags = await this.tagRepository.find();
+    if (!allTags) {
+      throw new Error('No tags found');
+    }
+    return allTags;
+  }
+
   public async createTag(createTagDto: CreateTagDto) {
     const newTag = this.tagRepository.create(createTagDto);
     return await this.tagRepository.save(newTag);

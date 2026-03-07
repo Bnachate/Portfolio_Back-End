@@ -24,14 +24,6 @@ export class Tag {
   name: string;
 
   @Column({
-    type: 'varchar',
-    length: 256,
-    nullable: false,
-    unique: true,
-  })
-  slug: string;
-
-  @Column({
     type: 'text',
     nullable: true,
   })

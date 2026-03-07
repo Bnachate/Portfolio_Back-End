@@ -4,7 +4,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsI
 
 
 {
-    "id": 1,
-    "title": "What's new with NestJS With Vue 3",
-    "tags": []
+    "id": 4,
+    "title": "What's new with NestJS With Vue 3"
 }

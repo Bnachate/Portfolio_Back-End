@@ -16,13 +16,14 @@ export class Project {
 
   @Column({
     type: 'varchar',
-    length: 512,
+    length: 100,
     nullable: false,
   })
   title: string;
 
   @Column({
-    type: 'text',
+    type: 'varchar',
+    length: 512,
     nullable: false,
   })
   description: string;

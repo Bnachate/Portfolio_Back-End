@@ -5,6 +5,7 @@ import { Auth } from './decorator/auth.decorator';
 import { AuthType } from './enums/auth-type.enum';
 import { RefreshTokenDto } from './dtos/refresh-token.dto';
 import { ApiResponse } from '@nestjs/swagger';
+import { Public } from './decorator/public.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -16,6 +17,7 @@ export class AuthController {
   })
   @Post('sign-in')
   @HttpCode(HttpStatus.OK)
+  @Public()
   @Auth(AuthType.None)
   public signIn(@Body() signInDto: SignInDto) {
     return this.authService.signIn(signInDto);
@@ -28,6 +30,7 @@ export class AuthController {
   })
   @Post('refresh-tokens')
   @HttpCode(HttpStatus.OK)
+  @Public()
   @Auth(AuthType.None)
   public refreshTokens(@Body() refreshTokenDto: RefreshTokenDto) {
     return this.authService.refreshTokens(refreshTokenDto);

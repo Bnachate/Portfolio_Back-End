@@ -1,6 +1,6 @@
 POST http://localhost:3500/projects
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcwNzYyODI0LCJleHAiOjE3NzA3NjY0MjQsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.TP5H-h3W37L90XIRTM_zsntUU8fUWPaJ4a9_TDswLps
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcyODg3NDc1LCJleHAiOjE3NzI4OTEwNzUsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ.Q95SlDmomydMlbR7Lis-0KxuEJOjsf8hyT-dqu1c7Gw
 {
     "title": "Quantum Computing for Web Developers",
     "description": "Is it time to learn Q# or should we wait for better JS bridges?",

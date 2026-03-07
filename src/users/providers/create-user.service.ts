@@ -30,7 +30,8 @@ export class CreateUserService {
       existingUser = await this.usersRepository.findOne({
         where: { email: createUserDto.email },
       });
-    } catch {
+    } catch (error) {
+      console.error('Error checking existing user:', error);
       throw new RequestTimeoutException(
         'Unable to process your request at the moment. Please try later',
         {
@@ -45,11 +46,13 @@ export class CreateUserService {
     }
     let newUser = this.usersRepository.create({
       ...createUserDto,
+      admin: createUserDto.admin ? 1 : 0, // Convert boolean/number to 0 or 1
       password: await this.hashingService.hashPassword(createUserDto.password),
     });
     try {
       newUser = await this.usersRepository.save(newUser);
-    } catch {
+    } catch (error) {
+      console.error('Error saving user to database:', error);
       throw new RequestTimeoutException(
         'Unable to process your request at the moment. Please try later',
         {
@@ -57,11 +60,11 @@ export class CreateUserService {
         },
       );
     }
-    try {
-      await this.mailService.sendUserWelcome(newUser);
-      return newUser;
-    } catch (error) {
-      throw new RequestTimeoutException(error);
-    }
+
+    // this.mailService.sendUserWelcome(newUser).catch((error) => {
+    //   console.error('Failed to send welcome email:', error);
+    // });
+
+    return newUser;
   }
 }

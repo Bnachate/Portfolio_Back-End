@@ -26,7 +26,7 @@ export class User {
   @Column({
     type: 'smallint',
     width: 1,
-    nullable: false,
+    nullable: true,
     default: 0,
   })
   admin: 0 | 1;

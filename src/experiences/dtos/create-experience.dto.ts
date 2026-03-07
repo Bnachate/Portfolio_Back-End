@@ -18,9 +18,9 @@ export class CreateExperienceDto {
   })
   @IsString()
   @MinLength(4)
-  @MaxLength(512)
+  @MaxLength(100)
   @IsNotEmpty()
-  jobtitle: string;
+  job: string;
 
   @ApiProperty({
     example: 'TheBestCompanyEver',
@@ -28,7 +28,7 @@ export class CreateExperienceDto {
   })
   @IsString()
   @MinLength(4)
-  @MaxLength(512)
+  @MaxLength(50)
   @IsNotEmpty()
   company: string;
 
@@ -38,6 +38,8 @@ export class CreateExperienceDto {
   })
   @IsString()
   @IsNotEmpty()
+  @MinLength(4)
+  @MaxLength(512)
   description: string;
 
   @ApiPropertyOptional({

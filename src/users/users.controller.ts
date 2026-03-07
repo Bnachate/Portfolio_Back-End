@@ -23,6 +23,7 @@ import { GetUsersParamDto } from './dtos/get-users-params.dto';
 import { CreateManyUserDto } from './dtos/create-many-user.dto';
 import { Auth } from 'src/auth/decorator/auth.decorator';
 import { AuthType } from 'src/auth/enums/auth-type.enum';
+import { Public } from 'src/auth/decorator/public.decorator';
 
 @Controller('users')
 @ApiTags('Users')
@@ -56,6 +57,8 @@ export class UsersController {
   }
 
   @Post()
+  @Public()
+  @Auth(AuthType.None)
   @UseInterceptors(ClassSerializerInterceptor)
   @ApiOperation({ summary: 'Register a new user' })
   @ApiBody({
@@ -70,7 +73,6 @@ export class UsersController {
     status: 400,
     description: 'Invalid user data or email already exists.',
   })
-  @Auth(AuthType.None)
   public createUsers(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }

@@ -1,10 +1,7 @@
-POST http://localhost:3000/tags
+POST http://localhost:3500/tags
 Content-Type:application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcxNjAwNzM2LCJleHAiOjE3NzE2MDQzMzYsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ.QklYYZ8Jr_ryEAQGwvd7ZULf2mOgsziWggnnQZ1ejuk
 
 {
-  "name": "Javascript",
-  "slug": "my-urlthing",
-  "description": "this is a description",
-  "schema": "{\"options\": true, \"enable\": true}",
-  "featuredImageUrl": "https://www.udemy.com/course/nestjs-masterclass-complete-course/learn/lecture/44530451#announcements"
+  "name": "Adobe Dreamweaver"
 }
