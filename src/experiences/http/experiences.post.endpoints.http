@@ -1,6 +1,6 @@
 POST http://localhost:3500/experiences
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcyNjQxNzkyLCJleHAiOjE3NzI2NDUzOTIsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ.LeOO74Yl4I6Kbdy8xEOzLJS3AyyH19CJx6lWN6u0fCY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcyNzIyNTcxLCJleHAiOjE3NzI3MjYxNzEsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ.VngUbBBpme0-u0bsKYa1TRnzR1l4Q9QrASiNavZa4GU
 {
     "job": "Développeur Front-End Senior",
     "company": "Tech Innovation",
@@ -11,7 +11,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsI
 }
 POST http://localhost:3500/experiences
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcyNjQxNzkyLCJleHAiOjE3NzI2NDUzOTIsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ.LeOO74Yl4I6Kbdy8xEOzLJS3AyyH19CJx6lWN6u0fCY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibmFjaGF0ZS5icmFoaW1AZ21haWwuY29tIiwiaWF0IjoxNzcyNzIyNTcxLCJleHAiOjE3NzI3MjYxNzEsImF1ZCI6ImxvY2FsaG9zdDozNTAwIiwiaXNzIjoibG9jYWxob3N0OjM1MDAifQ.VngUbBBpme0-u0bsKYa1TRnzR1l4Q9QrASiNavZa4GU
 {
     "job": "Développeur Front-End Junior",
     "company": "Ipocamp",

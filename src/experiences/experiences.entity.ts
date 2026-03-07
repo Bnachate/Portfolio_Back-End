@@ -29,7 +29,7 @@ export class Experience {
   company: string;
 
   @Column({
-    type: 'text',
+    type: 'varchar',
     length: 512,
     nullable: false,
   })
