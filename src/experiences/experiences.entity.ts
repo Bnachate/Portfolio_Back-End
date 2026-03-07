@@ -16,20 +16,21 @@ export class Experience {
 
   @Column({
     type: 'varchar',
-    length: 512,
+    length: 100,
     nullable: false,
   })
   job: string;
 
   @Column({
     type: 'varchar',
-    length: 512,
+    length: 50,
     nullable: false,
   })
   company: string;
 
   @Column({
-    type: 'text',
+    type: 'varchar',
+    length: 512,
     nullable: false,
   })
   description: string;
